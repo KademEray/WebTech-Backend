@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Highscores</title>
+</head>
+<body>
+<h1>Highscores List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Highscore</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="highscore : ${highscores}">
+        <td th:text="${highscore.person.username}"></td>
+        <td th:text="${highscore.score}"></td>
+    </tr>
+    </tbody>
+</table>
+<h1>Registered Users</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Username</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.username}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<form action="/register" method="post">
+    Username: <input type="text" name="username" required>
+    Password: <input type="password" name="password" required>
+    <input type="submit" value="Register">
+</form>
+<form action="/addHighscore" method="post">
+    Username: <input type="text" name="username" required>
+    Highscore: <input type="number" name="highscore" required>
+    <input type="submit" value="Add Highscore">
+</form>
+
+</body>
+</html>
