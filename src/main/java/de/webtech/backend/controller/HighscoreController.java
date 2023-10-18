@@ -30,4 +30,6 @@ public class HighscoreController {
         model.addAttribute("highscores", highscores);
         return "highscores";
     }
+
+
 }

@@ -1,11 +1,8 @@
 package de.webtech.backend.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import de.webtech.backend.model.Person;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Highscore {
@@ -14,6 +11,8 @@ public class Highscore {
     @JoinColumn(name = "person_id")
     private Person person;
     private int score;
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 

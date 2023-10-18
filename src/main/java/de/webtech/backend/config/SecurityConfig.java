@@ -1,5 +1,6 @@
 package de.webtech.backend.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,10 +21,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .anyRequest().permitAll()
-                .and()
-                .csrf(csrf -> csrf.disable()); // Deaktiviert CSRF-Schutz
+                .authorizeRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers(PathRequest.toH2Console()).permitAll() // Zugriff auf H2-Console erlauben
+                                .anyRequest().permitAll()
+                )
+                .csrf(csrf -> csrf.disable()) // Deaktiviert CSRF-Schutz
+                .headers(headers -> headers
+                        .disable() // Deaktiviert alle Header, einschließlich derjenigen, die Frame-Optionen setzen
+                );
+
         return http.build();
     }
+
+
+
+
+
 }

@@ -25,11 +25,12 @@ public class WebController {
     private PasswordEncoder passwordEncoder;
 
 
+
     @PostMapping("/register")
     public String register(@RequestParam String username, @RequestParam String password, Model model) {
         if (personRepository.findByUsername(username).isPresent()) {
             model.addAttribute("message", "Benutzername bereits vergeben");
-            return "registration";
+            return "highscores"; // Änderung hier, um zur highscores.html Seite zurückzukehren
         }
         Person person = new Person();
         person.setUsername(username);
@@ -39,13 +40,16 @@ public class WebController {
     }
 
     @PostMapping("/addHighscore")
-    public String addHighscore(@RequestParam String username, @RequestParam int highscore) {
+    public String addHighscore(@RequestParam String username, @RequestParam int highscore, Model model) {
         Person person = personRepository.findByUsername(username).orElse(null);
         if (person != null) {
             Highscore hs = new Highscore();
             hs.setPerson(person);
             hs.setScore(highscore);
             highscoreRepository.save(hs);
+        } else {
+            model.addAttribute("message", "Benutzername nicht gefunden");
+            return "highscores"; // Änderung hier, um zur highscores.html Seite zurückzukehren
         }
         return "redirect:/highscores";
     }
@@ -53,9 +57,7 @@ public class WebController {
     @GetMapping("/highscores")
     public String viewAllHighscores(Model model) {
         model.addAttribute("highscores", highscoreRepository.findAll());
-        model.addAttribute("persons", personRepository.findAll()); // Fügen Sie diese Zeile hinzu
+        model.addAttribute("persons", personRepository.findAll());
         return "highscores";
     }
-
 }
-
