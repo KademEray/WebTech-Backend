@@ -18,7 +18,6 @@ public class PersonController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
     @GetMapping
     public List<Person> getAllPersons() {
         return personRepository.findAll();
@@ -34,15 +33,9 @@ public class PersonController {
         if (personRepository.findByUsername(person.getUsername()).isPresent()) {
             return ResponseEntity.badRequest().body("Benutzername bereits vergeben");
         }
-
-        // Passwort hashen
         person.setPassword(passwordEncoder.encode(person.getPassword()));
-
-        // Benutzer speichern
         personRepository.save(person);
-
         return ResponseEntity.ok("Registrierung erfolgreich");
     }
-
 }
 

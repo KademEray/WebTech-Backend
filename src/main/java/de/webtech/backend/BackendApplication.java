@@ -13,11 +13,4 @@ public class BackendApplication {
 	}
 }
 
-@RestController
-class HelloWorldController {
 
-	@GetMapping("/")
-	public String helloWorld() {
-		return "Hello World!";
-	}
-}

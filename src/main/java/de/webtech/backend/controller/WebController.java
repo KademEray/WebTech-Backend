@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class WebController {
 
@@ -24,13 +26,11 @@ public class WebController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-
     @PostMapping("/register")
     public String register(@RequestParam String username, @RequestParam String password, Model model) {
         if (personRepository.findByUsername(username).isPresent()) {
             model.addAttribute("message", "Benutzername bereits vergeben");
-            return "highscores"; // Änderung hier, um zur highscores.html Seite zurückzukehren
+            return "highscores";
         }
         Person person = new Person();
         person.setUsername(username);
@@ -49,15 +49,16 @@ public class WebController {
             highscoreRepository.save(hs);
         } else {
             model.addAttribute("message", "Benutzername nicht gefunden");
-            return "highscores"; // Änderung hier, um zur highscores.html Seite zurückzukehren
+            return "highscores";
         }
         return "redirect:/highscores";
     }
-
     @GetMapping("/highscores")
-    public String viewAllHighscores(Model model) {
-        model.addAttribute("highscores", highscoreRepository.findAll());
-        model.addAttribute("persons", personRepository.findAll());
+    public String viewHighscores(Model model) {
+        // Hier können Sie Daten hinzufügen, die Sie auf der Seite anzeigen möchten, z.B.:
+        List<Highscore> highscores = highscoreRepository.findAll();
+        model.addAttribute("highscores", highscores);
         return "highscores";
     }
+
 }
