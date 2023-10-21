@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+@CrossOrigin
 @Controller
 public class WebController {
 
@@ -28,16 +30,22 @@ public class WebController {
 
     @PostMapping("/register")
     public String register(@RequestParam String username, @RequestParam String password, Model model) {
-        if (personRepository.findByUsername(username).isPresent()) {
-            model.addAttribute("message", "Benutzername bereits vergeben");
-            return "highscores";
+        try {
+            if (personRepository.findByUsername(username).isPresent()) {
+                model.addAttribute("message", "Benutzername bereits vergeben");
+                return "highscores";
+            }
+            Person person = new Person();
+            person.setUsername(username);
+            person.setPassword(passwordEncoder.encode(password));
+            personRepository.save(person);
+            return "redirect:/highscores";
+        } catch (Exception e) {
+            model.addAttribute("message", "Ein Fehler ist aufgetreten: " + e.getMessage());
+            return "error"; // Sie können hier auf eine spezifische Fehlerseite verweisen oder den gleichen View zurückgeben, um den Fehler anzuzeigen.
         }
-        Person person = new Person();
-        person.setUsername(username);
-        person.setPassword(passwordEncoder.encode(password));
-        personRepository.save(person);
-        return "redirect:/highscores";
     }
+
 
     @PostMapping("/addHighscore")
     public String addHighscore(@RequestParam String username, @RequestParam int highscore, Model model) {

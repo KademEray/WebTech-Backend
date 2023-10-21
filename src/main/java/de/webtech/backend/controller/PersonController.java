@@ -8,6 +8,7 @@ import de.webtech.backend.model.Person;
 import de.webtech.backend.repository.PersonRepository;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/persons")
 public class PersonController {
@@ -28,14 +29,14 @@ public class PersonController {
         return personRepository.save(person);
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Person person) {
-        if (personRepository.findByUsername(person.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Benutzername bereits vergeben");
-        }
-        person.setPassword(passwordEncoder.encode(person.getPassword()));
-        personRepository.save(person);
-        return ResponseEntity.ok("Registrierung erfolgreich");
-    }
+    //@PostMapping("/register")
+    //public ResponseEntity<?> register(@RequestBody Person person) {
+      //  if (personRepository.findByUsername(person.getUsername()).isPresent()) {
+        //    return ResponseEntity.badRequest().body("Benutzername bereits vergeben");
+        //}
+        //person.setPassword(passwordEncoder.encode(person.getPassword()));
+        //personRepository.save(person);
+        //return ResponseEntity.ok("Registrierung erfolgreich");
+    //}
 }
 
