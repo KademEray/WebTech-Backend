@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="de.webtech.backend.BackendApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-17T19:53:11" hostname="LAPTOP-ULNFIO2P" time="0.608">
+<testsuite name="de.webtech.backend.BackendApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-22T13:20:22" hostname="LAPTOP-ULNFIO2P" time="0.629">
   <properties/>
-  <testcase name="contextLoads()" classname="de.webtech.backend.BackendApplicationTests" time="0.608"/>
-  <system-out><![CDATA[21:53:06.371 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [de.webtech.backend.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-21:53:06.501 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration de.webtech.backend.BackendApplication for test class de.webtech.backend.BackendApplicationTests
+  <testcase name="contextLoads()" classname="de.webtech.backend.BackendApplicationTests" time="0.629"/>
+  <system-out><![CDATA[15:20:16.586 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [de.webtech.backend.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:20:16.707 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration de.webtech.backend.BackendApplication for test class de.webtech.backend.BackendApplicationTests
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,30 +13,30 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.4)
 
-2023-10-17T21:53:07.007+02:00  INFO 7328 --- [    Test worker] d.w.backend.BackendApplicationTests      : Starting BackendApplicationTests using Java 21 with PID 7328 (started by eray5 in C:\Users\eray5\Desktop\backend)
-2023-10-17T21:53:07.010+02:00  INFO 7328 --- [    Test worker] d.w.backend.BackendApplicationTests      : No active profile set, falling back to 1 default profile: "default"
-2023-10-17T21:53:07.841+02:00  INFO 7328 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-10-17T21:53:07.917+02:00  INFO 7328 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 2 JPA repository interfaces.
-2023-10-17T21:53:08.485+02:00  INFO 7328 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-10-17T21:53:08.671+02:00  INFO 7328 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
-2023-10-17T21:53:08.673+02:00  INFO 7328 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-10-17T21:53:08.745+02:00  INFO 7328 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-10-17T21:53:08.833+02:00  INFO 7328 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
-2023-10-17T21:53:08.837+02:00  INFO 7328 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
-2023-10-17T21:53:09.048+02:00  INFO 7328 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2023-10-17T21:53:09.258+02:00  INFO 7328 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2023-10-17T21:53:09.553+02:00  INFO 7328 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
-2023-10-17T21:53:10.186+02:00  INFO 7328 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-10-17T21:53:10.233+02:00  INFO 7328 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-10-17T21:53:10.855+02:00  WARN 7328 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+2023-10-22T15:20:17.209+02:00  INFO 32540 --- [    Test worker] d.w.backend.BackendApplicationTests      : Starting BackendApplicationTests using Java 21 with PID 32540 (started by eray5 in C:\Users\eray5\Desktop\backend)
+2023-10-22T15:20:17.211+02:00  INFO 32540 --- [    Test worker] d.w.backend.BackendApplicationTests      : No active profile set, falling back to 1 default profile: "default"
+2023-10-22T15:20:18.047+02:00  INFO 32540 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-22T15:20:18.131+02:00  INFO 32540 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72 ms. Found 3 JPA repository interfaces.
+2023-10-22T15:20:18.705+02:00  INFO 32540 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-22T15:20:18.936+02:00  INFO 32540 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2023-10-22T15:20:18.937+02:00  INFO 32540 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-22T15:20:18.998+02:00  INFO 32540 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-22T15:20:19.070+02:00  INFO 32540 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.9.Final
+2023-10-22T15:20:19.072+02:00  INFO 32540 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-22T15:20:19.272+02:00  INFO 32540 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-22T15:20:19.467+02:00  INFO 32540 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-22T15:20:19.753+02:00  INFO 32540 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-22T15:20:20.387+02:00  INFO 32540 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-22T15:20:20.438+02:00  INFO 32540 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-22T15:20:21.104+02:00  WARN 32540 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Using generated security password: a71247c0-e6f2-40e3-b2c5-932aa0326f43
+Using generated security password: e96479a4-16d9-4efb-8a6c-068a44f90710
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2023-10-17T21:53:11.079+02:00  INFO 7328 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2cdb53d6, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@62ba3045, org.springframework.security.web.context.SecurityContextHolderFilter@38f3dbbf, org.springframework.security.web.header.HeaderWriterFilter@3ad9fea, org.springframework.security.web.csrf.CsrfFilter@5c30decf, org.springframework.security.web.authentication.logout.LogoutFilter@22bca04e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6344004d, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1ec09a68, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@397bd46b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@442151d1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@70ab1ce0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7bdddfa4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@d863bb, org.springframework.security.web.access.ExceptionTranslationFilter@5ed88e31, org.springframework.security.web.access.intercept.AuthorizationFilter@a70daf4]
-2023-10-17T21:53:11.699+02:00  INFO 7328 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
-2023-10-17T21:53:11.765+02:00  INFO 7328 --- [    Test worker] d.w.backend.BackendApplicationTests      : Started BackendApplicationTests in 5.032 seconds (process running for 6.491)
+2023-10-22T15:20:21.299+02:00  INFO 32540 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1d6dc2b8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7ec75228, org.springframework.security.web.context.SecurityContextHolderFilter@1659d7d, org.springframework.security.web.authentication.logout.LogoutFilter@7ff7e353, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3fb42ec7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1f7b1d6a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@55cf5626, org.springframework.security.web.access.ExceptionTranslationFilter@63fde7ca, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3f1d4ecf]
+2023-10-22T15:20:21.914+02:00  INFO 32540 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2023-10-22T15:20:21.981+02:00  INFO 32540 --- [    Test worker] d.w.backend.BackendApplicationTests      : Started BackendApplicationTests in 5.047 seconds (process running for 6.46)
 ]]></system-out>
   <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\eray5\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.8\ae6ebe485f3bcd0a1e20241488a32e6400a501ef\byte-buddy-agent-1.14.8.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
