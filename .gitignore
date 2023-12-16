@@ -1,0 +1,72 @@
+# Compiled Java classes
+*.class
+
+# Package files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Gradle specific
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# H2 database files
+*.db
+*.trace.db
+*.mv.db
+
+
+# IDEs and Editors
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.swp
+*.swo
+*~.nib
+local.properties
+*.launch
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+hs_err_pid*
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Virtual Machine files
+*.vmdk
+*.vmx
+*.vmxf
+.vagrant/
+**/vagrant
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Project specific
+/bin/
+/out/
+/logs/
