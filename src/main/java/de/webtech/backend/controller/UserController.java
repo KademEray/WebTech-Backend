@@ -18,6 +18,8 @@ import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -62,6 +64,10 @@ public class UserController {
             User createdUser = userService.createUser(user);
             return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
+            // Spezifische Fehlermeldung für bereits vergebene Benutzernamen
+            if (e.getMessage().equals("Der Benutzername ist bereits vergeben")) {
+                return new ResponseEntity<>("Benutzername bereits vergeben", HttpStatus.CONFLICT);
+            }
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
@@ -119,18 +125,29 @@ public class UserController {
 
     // Update user points
     @PutMapping("/{username}/points")
-    public ResponseEntity<?> updateUserPoints(@PathVariable String username, @RequestBody int points) {
+    public ResponseEntity<?> updateUserPoints(@PathVariable String username, @RequestBody Map<String, Integer> pointsData) {
         try {
             User user = userService.findByUsername(username);
             if (user == null) {
                 return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
             }
-            user.setPoints(points);
-            userRepository.save(user);
+            int newPoints = pointsData.get("points");
+            if (newPoints > user.getPoints()) {
+                user.setPoints(newPoints);
+                userRepository.save(user);
+            }
             return ResponseEntity.ok(user);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/highscores")
+    public ResponseEntity<List<User>> getHighscores() {
+        List<User> users = userService.getAllUsers();
+        // Sortierung der Benutzer nach Punkten
+        users.sort((u1, u2) -> Integer.compare(u2.getPoints(), u1.getPoints()));
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
 
