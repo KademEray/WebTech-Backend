@@ -32,7 +32,8 @@ public class SecurityConfig extends AbstractHttpConfigurer<SecurityConfig, HttpS
                         authorizeRequests
                                 .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll() // Zugriff auf H2-Console erlauben
                                 .requestMatchers(new AntPathRequestMatcher("/api/users/**")).permitAll()
-                                .anyRequest().permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/api/skins/**")).permitAll()
+                                .anyRequest().authenticated()
                 )
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll
                 )

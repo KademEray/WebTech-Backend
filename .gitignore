@@ -70,3 +70,11 @@ yarn-error.log
 /bin/
 /out/
 /logs/
+
+# Gradle build directory
+/build/
+
+/tmp/
+
+
+
