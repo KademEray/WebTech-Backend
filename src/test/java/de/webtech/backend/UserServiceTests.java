@@ -18,6 +18,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Testklasse für den UserService.
+ * Enthält Unit-Tests zur Überprüfung der Funktionen des UserService.
+ */
 public class UserServiceTests {
 
     @Mock
@@ -29,11 +33,17 @@ public class UserServiceTests {
     @InjectMocks
     private UserService userService;
 
+    /**
+     * Initialisiert die Mock-Objekte vor jedem Test.
+     */
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Testet, ob createUser einen neuen Benutzer erfolgreich erstellt.
+     */
     @Test
     public void createUser_ShouldCreateUserSuccessfully() {
         User newUser = new User();
@@ -53,6 +63,9 @@ public class UserServiceTests {
         verify(userRepository).save(any(User.class));
     }
 
+    /**
+     * Testet, ob createUser eine Ausnahme wirft, wenn der Benutzername bereits existiert.
+     */
     @Test
     public void createUser_ShouldThrowExceptionForExistingUsername() {
         User newUser = new User();
@@ -66,6 +79,9 @@ public class UserServiceTests {
         verify(userRepository, never()).save(any(User.class));
     }
 
+    /**
+     * Testet, ob getAllUsers eine Liste aller Benutzer zurückgibt.
+     */
     @Test
     public void getAllUsers_ShouldReturnAllUsers() {
         User user1 = new User();
@@ -86,6 +102,9 @@ public class UserServiceTests {
         verify(userRepository).findAll();
     }
 
+    /**
+     * Testet, ob getUserById einen UserDTO für eine gegebene Benutzer-ID zurückgibt.
+     */
     @Test
     public void getUserById_ShouldReturnUserDTO() {
         Long userId = 1L;
@@ -102,6 +121,9 @@ public class UserServiceTests {
         assertEquals("user1", userDTO.getUsername());
     }
 
+    /**
+     * Testet, ob updateUser einen Benutzer aktualisiert und zurückgibt.
+     */
     @Test
     public void updateUser_ShouldUpdateAndReturnUser() {
         Long userId = 1L;
@@ -125,6 +147,9 @@ public class UserServiceTests {
         assertEquals("encodedNewPassword", updatedUser.getPassword());
     }
 
+    /**
+     * Testet, ob deleteUser einen Benutzer löscht.
+     */
     @Test
     public void deleteUser_ShouldDeleteUser() {
         Long userId = 1L;
@@ -140,6 +165,9 @@ public class UserServiceTests {
         verify(userRepository).delete(existingUser);
     }
 
+    /**
+     * Testet, ob findByUsername einen Benutzer anhand des Benutzernamens zurückgibt.
+     */
     @Test
     public void findByUsername_ShouldReturnUser() {
         String username = "user1";

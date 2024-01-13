@@ -20,6 +20,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Testklasse für den SkinController.
+ * Diese Klasse enthält verschiedene Unit-Tests zur Überprüfung der Funktionalitäten des SkinControllers.
+ */
 public class SkinControllerTests {
 
     @Mock
@@ -31,11 +35,18 @@ public class SkinControllerTests {
     @InjectMocks
     private SkinController skinController;
 
+    /**
+     * Initialisierungsmethode, die vor jedem Test aufgerufen wird.
+     * Initialisiert die Mock-Objekte.
+     */
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Testet, ob die Methode getAllSkins eine Liste von Skins zurückgibt.
+     */
     @Test
     public void getAllSkins_ShouldReturnListOfSkins() {
         Skin skin1 = new Skin();
@@ -59,6 +70,9 @@ public class SkinControllerTests {
         verify(skinService).getAllSkins();
     }
 
+    /**
+     * Testet, ob die Methode getSkins für einen eingeloggten Benutzer Skins zurückgibt.
+     */
     @Test
     public void getSkins_WhenUserDetailsNotNull_ShouldReturnSkinsForUser() {
         UserDetails userDetails = mock(UserDetails.class);
@@ -85,7 +99,9 @@ public class SkinControllerTests {
         assertEquals(Arrays.asList(skin), response.getBody());
     }
 
-
+    /**
+     * Testet, ob die Methode createSkin einen neuen Skin erstellt und zurückgibt.
+     */
     @Test
     public void createSkin_ShouldCreateAndReturnSkin() {
         Skin newSkin = new Skin();
@@ -107,6 +123,9 @@ public class SkinControllerTests {
         assertEquals(createdSkin, response.getBody());
     }
 
+    /**
+     * Testet, ob die Methode deleteSkin einen Skin löscht und OK zurückgibt.
+     */
     @Test
     public void deleteSkin_ShouldDeleteSkinAndReturnOk() {
         Long skinId = 1L;
@@ -118,6 +137,9 @@ public class SkinControllerTests {
         verify(skinService).deleteSkin(skinId);
     }
 
+    /**
+     * Testet, ob die Methode getSkinsByUsername Skins für einen gegebenen Benutzernamen zurückgibt.
+     */
     @Test
     public void getSkinsByUsername_ShouldReturnSkinsForGivenUsername() {
         String username = "user2";
@@ -141,7 +163,9 @@ public class SkinControllerTests {
         assertEquals(Arrays.asList(skin1, skin2), response.getBody());
     }
 
-    // Test für getPrivateData
+    /**
+     * Testet die getPrivateData-Methode für eingeloggte Benutzer und gibt eine Begrüßungsnachricht zurück.
+     */
     @Test
     public void getPrivateData_WhenUserDetailsNotNull_ShouldReturnGreeting() {
         UserDetails userDetails = mock(UserDetails.class);
@@ -152,13 +176,18 @@ public class SkinControllerTests {
         assertEquals("Hallo user3", response);
     }
 
+    /**
+     * Testet die getPrivateData-Methode für nicht eingeloggte Benutzer und gibt eine Aufforderung zur Anmeldung zurück.
+     */
     @Test
     public void getPrivateData_WhenUserDetailsNull_ShouldReturnLoginPrompt() {
         String response = skinController.getPrivateData(null);
         assertEquals("Sie müssen sich anmelden, um auf diese Ressource zuzugreifen.", response);
     }
 
-    // Test für updateSkin
+    /**
+     * Testet, ob die Methode updateSkin einen Skin aktualisiert und den aktualisierten Skin zurückgibt.
+     */
     @Test
     public void updateSkin_ShouldUpdateAndReturnSkin() {
         Long skinId = 5L;

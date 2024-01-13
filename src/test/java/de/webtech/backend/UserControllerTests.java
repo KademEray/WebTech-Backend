@@ -22,6 +22,11 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
+/**
+ * Testklasse für den UserController.
+ * Enthält Unit-Tests zur Überprüfung der Funktionen des UserControllers.
+ */
 public class UserControllerTests {
 
     @Mock
@@ -36,11 +41,17 @@ public class UserControllerTests {
     @InjectMocks
     private UserController userController;
 
+    /**
+     * Initialisiert die Mock-Objekte vor jedem Test.
+     */
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Testet, ob getAllUsers eine Liste aller Benutzer zurückgibt.
+     */
     @Test
     public void getAllUsers_ShouldReturnListOfUsers() {
         User user1 = new User();
@@ -58,6 +69,9 @@ public class UserControllerTests {
         verify(userService, times(1)).getAllUsers();
     }
 
+    /**
+     * Testet, ob getUserById einen UserDTO für eine gegebene Benutzer-ID zurückgibt.
+     */
     @Test
     public void getUserById_ShouldReturnUserDTO() {
         Long userId = 1L;
@@ -73,6 +87,9 @@ public class UserControllerTests {
         verify(userService, times(1)).getUserById(userId);
     }
 
+    /**
+     * Testet, ob getCurrentUser die UserDetails des aktuellen Benutzers zurückgibt.
+     */
     @Test
     public void getCurrentUser_ShouldReturnCurrentUserDetails() {
         UserDetails userDetails = mock(UserDetails.class);
@@ -84,6 +101,9 @@ public class UserControllerTests {
         assertEquals("user1", result.getUsername(), "Benutzername sollte übereinstimmen");
     }
 
+    /**
+     * Testet, ob createUser einen neuen Benutzer erstellt und zurückgibt.
+     */
     @Test
     public void createUser_ShouldCreateAndReturnUser() {
         User newUser = new User();
@@ -97,6 +117,9 @@ public class UserControllerTests {
         assertEquals(newUser, response.getBody(), "Erstellter Benutzer sollte zurückgegeben werden");
     }
 
+    /**
+     * Testet die Login-Funktion für gültige Benutzer.
+     */
     @Test
     public void login_ShouldReturnTokenForValidUser() {
         User user = new User();
@@ -113,8 +136,9 @@ public class UserControllerTests {
         assertNotNull(response.getBody(), "Token sollte nicht null sein");
     }
 
-
-
+    /**
+     * Testet die Login-Funktion für ungültige Benutzer.
+     */
     @Test
     public void login_ShouldReturnUnauthorizedForInvalidUser() {
         User user = new User();
@@ -128,6 +152,9 @@ public class UserControllerTests {
         assertEquals("Ungültiger Benutzername oder Passwort", response.getBody(), "Antwort sollte eine Fehlermeldung enthalten");
     }
 
+    /**
+     * Testet, ob updateUser einen Benutzer aktualisiert und zurückgibt.
+     */
     @Test
     public void updateUser_ShouldUpdateAndReturnUser() {
         Long userId = 1L;
@@ -142,6 +169,9 @@ public class UserControllerTests {
         assertEquals(updatedUser, response.getBody(), "Aktualisierter Benutzer sollte zurückgegeben werden");
     }
 
+    /**
+     * Testet, ob deleteUser einen Benutzer löscht.
+     */
     @Test
     public void deleteUser_ShouldDeleteUser() {
         Long userId = 1L;
@@ -153,6 +183,9 @@ public class UserControllerTests {
         verify(userService, times(1)).deleteUser(userId);
     }
 
+    /**
+     * Testet, ob getUserPoints die Punkte eines Benutzers zurückgibt.
+     */
     @Test
     public void getUserPoints_ShouldReturnUserPoints() {
         String username = "user1";
@@ -168,6 +201,9 @@ public class UserControllerTests {
         assertEquals(100, response.getBody(), "Punkte sollten übereinstimmen");
     }
 
+    /**
+     * Testet, ob updateUserPoints die Punkte eines Benutzers aktualisiert und zurückgibt.
+     */
     @Test
     public void updateUserPoints_ShouldUpdateAndReturnUser() {
         String username = "user1";
@@ -184,6 +220,9 @@ public class UserControllerTests {
         assertEquals(user, response.getBody(), "Aktualisierter Benutzer sollte zurückgegeben werden");
     }
 
+    /**
+     * Testet, ob getHighscores eine sortierte Liste von Benutzern nach ihren Punkten zurückgibt.
+     */
     @Test
     public void getHighscores_ShouldReturnSortedUsers() {
         User user1 = new User(); // Konfigurieren Sie das User-Objekt

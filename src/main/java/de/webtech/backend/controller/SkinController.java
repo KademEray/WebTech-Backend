@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+/**
+ * Controller für die Verwaltung von Skins.
+ * Stellt Endpunkte bereit, um Skins zu erstellen, zu aktualisieren, zu löschen und abzurufen.
+ * Unterstützt auch die Abfrage von Skins für bestimmte Benutzer.
+ */
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api/skins")
@@ -32,13 +37,24 @@ public class SkinController {
     @Autowired
     private UserService userService;
 
-    // Methode, um alle Skins abzurufen
+
+    /**
+     * Ruft alle verfügbaren Skins ab.
+     *
+     * @return Eine Liste von Skins.
+     */
     @GetMapping
     public List<Skin> getAllSkins() {
         return skinService.getAllSkins();
     }
 
-    // Methode, um Skins für den eingeloggten Benutzer abzurufen
+
+    /**
+     * Ruft Skins für den aktuell eingeloggten Benutzer ab.
+     *
+     * @param userDetails Details des eingeloggten Benutzers.
+     * @return Eine Antwort-Entität mit den Skins des Benutzers oder ein UNAUTHORIZED-Status, falls nicht eingeloggt.
+     */
     @GetMapping("/forUser")
     public ResponseEntity<?> getSkins(@AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails != null) {
@@ -51,43 +67,71 @@ public class SkinController {
     }
 
 
-    // Methode, um Skins für einen bestimmten Benutzer abzurufen
+
+    /**
+     * Ruft Skins für einen spezifischen Benutzer ab.
+     *
+     * @param username Der Benutzername, für den die Skins abgerufen werden sollen.
+     * @return Eine Antwort-Entität mit den Skins des Benutzers.
+     */
     @GetMapping("/forUser/{username}")
     public ResponseEntity<List<Skin>> getSkinsByUsername(@PathVariable String username) {
         List<Skin> skins = skinService.getSkinsByUsername(username);
         return ResponseEntity.ok(skins);
     }
 
+    /**
+     * Stellt private Daten für den authentifizierten Benutzer bereit.
+     *
+     * @param userDetails Details des eingeloggten Benutzers.
+     * @return Eine Nachricht für den Benutzer.
+     */
     @GetMapping("/api/private/data")
     public String getPrivateData(@AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails != null) {
             String username = userDetails.getUsername();
-            // Der Benutzer ist authentifiziert, tun Sie etwas mit dem Benutzernamen
             return "Hallo " + username;
         } else {
-            // Der Benutzer ist nicht authentifiziert
             return "Sie müssen sich anmelden, um auf diese Ressource zuzugreifen.";
         }
     }
 
-    // Methode, um einen neuen Skin zu erstellen
+
+    /**
+     * Erstellt einen neuen Skin.
+     *
+     * @param skin Die Skin-Details für die Erstellung.
+     * @return Eine Antwort-Entität mit dem erstellten Skin.
+     */
     @PostMapping("/createSkin")
     public ResponseEntity<Skin> createSkin(@RequestBody Skin skin) {
-        String username = skin.getUsername();  // Benutzername aus dem Request-Body extrahieren
-        // Übergebe den Benutzernamen an die Methode createSkin deines Services
+        String username = skin.getUsername();
         Skin createdSkin = skinService.createSkin(skin, username);
         return new ResponseEntity<>(createdSkin, HttpStatus.CREATED);
     }
 
 
-    // Methode, um einen vorhandenen Skin zu aktualisieren
+
+    /**
+     * Aktualisiert einen vorhandenen Skin.
+     *
+     * @param id Die ID des zu aktualisierenden Skins.
+     * @param skinDetails Die aktualisierten Skin-Details.
+     * @return Eine Antwort-Entität mit dem aktualisierten Skin.
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Skin> updateSkin(@PathVariable Long id, @RequestBody Skin skinDetails) {
         Skin updatedSkin = skinService.updateSkin(id, skinDetails);
         return ResponseEntity.ok(updatedSkin);
     }
 
-    // Methode, um einen Skin zu löschen
+
+    /**
+     * Löscht einen Skin.
+     *
+     * @param id Die ID des zu löschenden Skins.
+     * @return Eine leere Antwort-Entität, die den Erfolg der Operation anzeigt.
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSkin(@PathVariable Long id) {
         skinService.deleteSkin(id);

@@ -15,16 +15,34 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-
+/**
+ * Konfigurationsklasse für die Sicherheitseinstellungen der Webanwendung.
+ * Verwendet Spring Security, um verschiedene Sicherheitsaspekte wie Authentifizierung, Autorisierung,
+ * CORS, CSRF-Schutz und HTTP-Headers zu konfigurieren.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends AbstractHttpConfigurer<SecurityConfig, HttpSecurity> {
 
+    /**
+     * Erstellt eine Bean für den Passwortencoder, der zur Verschlüsselung der Passwörter verwendet wird.
+     * Hier wird BCryptPasswordEncoder verwendet.
+     *
+     * @return Ein Passwortencoder.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Definiert die Sicherheitsfilterkette zur Konfiguration der Sicherheitseinstellungen.
+     * Konfiguriert die Authentifizierungs- und Autorisierungsregeln für verschiedene Endpunkte.
+     *
+     * @param http HttpSecurity-Konfigurationsobjekt zur Definition von Sicherheitseinstellungen.
+     * @return Die konfigurierte SecurityFilterChain.
+     * @throws Exception bei Konfigurationsfehlern.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -48,6 +66,13 @@ public class SecurityConfig extends AbstractHttpConfigurer<SecurityConfig, HttpS
         return http.build();
     }
 
+    /**
+     * Konfiguriert globale Authentifizierungseinstellungen.
+     * Hier wird eine einfache In-Memory-Authentifizierung mit einem einzigen Benutzer definiert.
+     *
+     * @param auth AuthenticationManagerBuilder zur Konfiguration der Authentifizierung.
+     * @throws Exception bei Konfigurationsfehlern.
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth

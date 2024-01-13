@@ -17,6 +17,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Testklasse für den SkinService.
+ * Diese Klasse enthält verschiedene Unit-Tests, um die Funktionalitäten des SkinService zu überprüfen.
+ */
 public class SkinServiceTests {
 
     @Mock
@@ -25,11 +29,17 @@ public class SkinServiceTests {
     @InjectMocks
     private SkinService skinService;
 
+    /**
+     * Initialisiert die Mock-Objekte vor jedem Test.
+     */
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Testet, ob getAllSkins eine Liste von Skins zurückgibt.
+     */
     @Test
     public void getAllSkins_ShouldReturnListOfSkins() {
         Skin skin1 = new Skin();
@@ -45,6 +55,9 @@ public class SkinServiceTests {
         assertEquals(expectedSkins, actualSkins, "Die zurückgegebene Liste von Skins sollte mit der erwarteten Liste übereinstimmen");
     }
 
+    /**
+     * Testet, ob getSkinById einen Skin anhand seiner ID zurückgibt.
+     */
     @Test
     public void getSkinById_ShouldReturnSkin() {
         Skin skin = new Skin();
@@ -57,6 +70,9 @@ public class SkinServiceTests {
         assertEquals(skin, foundSkin.get(), "Gefundener Skin sollte mit dem erwarteten übereinstimmen");
     }
 
+    /**
+     * Testet, ob createSkin einen neuen Skin erstellt und zurückgibt.
+     */
     @Test
     public void createSkin_ShouldCreateAndReturnSkin() {
         Skin newSkin = new Skin();
@@ -72,6 +88,9 @@ public class SkinServiceTests {
         assertEquals(newSkin, createdSkin, "Erstellter Skin sollte mit dem erwarteten übereinstimmen");
     }
 
+    /**
+     * Testet, ob getSkinsByUsername eine Liste von Skins für einen gegebenen Benutzernamen zurückgibt.
+     */
     @Test
     public void getSkinsByUsername_ShouldReturnListOfSkins() {
         Skin skin1 = new Skin();
@@ -89,6 +108,9 @@ public class SkinServiceTests {
         assertEquals(expectedSkins, actualSkins, "Die zurückgegebene Liste von Skins sollte mit der erwarteten Liste übereinstimmen");
     }
 
+    /**
+     * Testet, ob updateSkin einen bestehenden Skin aktualisiert und zurückgibt.
+     */
     @Test
     public void updateSkin_ShouldUpdateAndReturnSkin() {
         Long skinId = 3L;
@@ -110,6 +132,9 @@ public class SkinServiceTests {
         assertEquals("Dreieckig", updatedSkin.getShape(), "Die Form sollte aktualisiert werden");
     }
 
+    /**
+     * Testet, ob deleteSkin einen Skin löscht.
+     */
     @Test
     public void deleteSkin_ShouldDeleteSkin() {
         Long skinId = 4L;
